@@ -4,17 +4,33 @@ const playAgainBtn = document.getElementById('play-button')
 const popup = document.getElementById('popup-container')
 const notification = document.getElementById('notification-container')
 const finalMessage = document.getElementById('final-message')
+const startRandomBtn = document.getElementById('random-button')
+const startDefaultBtn = document.getElementById('default-button')
+const startPopupContainer = document.getElementById('start-popup-container')
 
 const figureParts = document.querySelectorAll('.figure-part')
 
  
-const words = ['application', 'programming', 'interface', 'wizard']
+const words = ['application', 'programming', 'interface', 'wizard', 'left', 'birth', 'waste', 'approval', 'glamorous', 'circle']
 
 
 let selectWord = getRandomWord()
 
 const correctLetters = []
 const wrongLetters = []
+
+// Getting randoms words from API
+async function getRandomWordsAPI(number){
+    const res = await fetch(`https://random-word-api.herokuapp.com/word?number=${number}`)
+    const data = await res.json()
+
+    addToWords(data)
+}
+
+// add to words array
+function addToWords(data){
+    [...data].forEach(e => words.push(e))
+}
 
 
 
@@ -123,4 +139,21 @@ playAgainBtn.addEventListener('click', () => {
     popup.style.display = 'none'
 })
 
-displayWord()
+// Start Default button
+
+startDefaultBtn.addEventListener('click', () => {
+
+
+    displayWord()
+    startPopupContainer.style.display = 'none'
+
+})
+
+// Start with random buttom - add more N words
+startRandomBtn.addEventListener('click', () => {
+    
+    getRandomWordsAPI(100)
+    displayWord()
+    startPopupContainer.style.display = 'none'
+
+})
