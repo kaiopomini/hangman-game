@@ -3,7 +3,7 @@
  When you choose start with random words, this game get a hundred randomic words from API.
 
 
-### Tecnologies used:
+### Technologies used:
 
 - HTML/CSS/JS
 - API [random-word-api](https://github.com/RazorSh4rk/random-word-api) to get a random word
